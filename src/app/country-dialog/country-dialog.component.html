@@ -1,0 +1,57 @@
+<!-- country-dialog.component.html
+//==========
+//
+//AUTHOR: Ecem Gulec (ecegulec35@gmail.com)
+// CREATED: 2023-08-09
+// UPDATED: 2023-08-16
+-->
+
+<!-- dialog box title -->
+<h1 class="dialog-title" mat-dialog-title>
+    {{country.Name}}
+</h1>
+
+<!-- the details of country -->
+<div mat-dialog-content>
+    <p><strong>Code: </strong>{{country.Code}} / {{country.Code2}}</p>
+    <p><strong>Continent: </strong>{{country.Continent}}</p>
+    <p><strong>Region: </strong>{{country.Region}}</p>
+    <p><strong>Surface Area (km<sup>2</sup>): </strong>{{country.SurfaceArea}}</p>
+    <p><strong>Population: </strong>{{country.Population}}</p>
+    <p><strong>GNP: </strong>{{country.GNP}}</p>
+    <p><strong>Major Cities: </strong></p>
+
+    <!-- Mat Table for Cities -->
+    <mat-table [dataSource]="cityDataSource" matSort class="mat-elivation-z8">
+        <!-- define rows -->
+        <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columns"></mat-row>
+
+        <!-- define columns -->
+        <ng-container matColumnDef="Name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell *matCellDef="let city">{{city.Name}}</mat-cell>
+        </ng-container>
+
+        <!-- define columns -->
+        <ng-container matColumnDef="District">
+            <mat-header-cell *matHeaderCellDef>District</mat-header-cell>
+            <mat-cell *matCellDef="let city">{{city.District}}</mat-cell>
+        </ng-container>
+        <!-- define columns -->     
+        <ng-container matColumnDef="Population">
+            <mat-header-cell *matHeaderCellDef>Population</mat-header-cell>
+            <mat-cell *matCellDef="let city">{{city.Population}}</mat-cell>
+        </ng-container>
+    </mat-table>
+
+    <!--Map-->
+    <p><strong>Map:</strong> <br><img [src]="map"></p>
+</div> <!-- Close mat-dialog-content -->
+
+<!-- Close button -->
+<div class="close">
+    <mat-dialog-actions>
+        <button mat-flat-button color="accent" mat-dialog-close>CLOSE</button>
+    </mat-dialog-actions>
+</div>

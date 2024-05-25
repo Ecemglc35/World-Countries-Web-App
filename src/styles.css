@@ -1,0 +1,48 @@
+/* style.css
+//==========
+//
+//AUTHOR: Ecem Gulec (ecegulec35@gmail.com)
+// CREATED: 2023-08-02
+// UPDATED: 2023-08-16 */
+body {
+    margin: 10px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    }
+.flag {
+    height: 30px;
+    width: auto;
+    object-fit: contain;
+}
+.mat-mdc-row:hover .mat-mdc-cell{
+    cursor: pointer;
+    background-color: beige;
+}
+.dialog-title{
+    text-align: center;
+    background-color: primary;
+}
+.close{
+    display: flex;
+    justify-content: center;
+}
+.about{
+    padding-left: 20px;
+    max-width: 700px;
+}
+h3{
+     text-align: center;
+}
+.blank {
+    flex: 1 1 auto;
+}
+.bar{
+    display: flex;
+    justify-content: center;
+    color:"accent";
+} 
+.search{
+    width: 100%;
+}
+ 
+
+

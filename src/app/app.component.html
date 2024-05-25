@@ -1,0 +1,66 @@
+<!--/ app.component.html
+//==========
+//
+//AUTHOR: Ecem Gulec (ecegulec35@gmail.com)
+// CREATED: 2023-08-02
+// UPDATED: 2023-08-16
+-->
+<mat-toolbar class="bar" color="accent">
+  <span class="blank"></span>
+  <h1>World Countries - Ecem </h1>
+  <span class="blank"></span>
+  <button mat-icon-button (click)="openInfo()">
+    <mat-icon>info</mat-icon>
+  </button>
+</mat-toolbar>
+<br>
+Continent:
+<br>
+<mat-radio-group [(ngModel)]="selected" (change)="changeContinent()" >
+  <mat-radio-button *ngFor="let radio of radios" value="{{radio}}">{{radio}}</mat-radio-button>
+</mat-radio-group>
+<br><br>
+<mat-form-field appearance="outline" class="search">
+  <mat-label><mat-icon>search</mat-icon>Search Countries</mat-label>
+  <input matInput [(ngModel)]="filterCountry" (ngModelChange)="searchCountry()">
+</mat-form-field>
+
+<!--material table-->
+<mat-table #tableStudent [dataSource]="countryDataSource" matSort #sortCountry="matSort" matSortActive="Name"
+  matSortDirection="asc" class="mat-elivation-z8">
+  
+  <!--define rows -->
+  <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columns" (click)="openDialog(row)"></mat-row>
+
+  <!--define columns-->
+  <ng-container matColumnDef="Name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+    <mat-cell *matCellDef="let c">
+      <img class="flag" [src]="getFlagImage(c)">
+      &nbsp;{{c.Name}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Code">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Code</mat-header-cell>
+    <mat-cell *matCellDef="let c">{{c.Code}}/{{c.Code2}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Continent">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Cotinent</mat-header-cell>
+    <mat-cell *matCellDef="let c">{{c.Continent}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="SurfaceArea">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Surface Area(km<sup>2</sup>)</mat-header-cell>
+    <mat-cell *matCellDef="let c">{{c.SurfaceArea}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Population">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Population</mat-header-cell>
+    <mat-cell *matCellDef="let c">{{c.Population}}</mat-cell>
+  </ng-container>
+
+</mat-table>
+<mat-paginator class="mat-elevation-z8" [pageSize]="5" [length]="20" [pageSizeOptions]="[5, 10, 50, 100, 300]"
+  showFirstLastButtons></mat-paginator>
